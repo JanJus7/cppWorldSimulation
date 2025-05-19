@@ -1,5 +1,6 @@
 #include "World.h"
 #include <fstream>
+#include <algorithm> // Added that for remove_if 
 
 string World::getOrganismFromPosition(int x, int y)
 {	

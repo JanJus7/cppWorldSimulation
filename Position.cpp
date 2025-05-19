@@ -1,4 +1,5 @@
 #include "Position.h"
+#include <cmath> // added because of "sqrt is undefined message"
 
 
 Position::Position(int x, int y)
