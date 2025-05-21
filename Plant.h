@@ -3,9 +3,10 @@
 
 class Plant : public Organism
 {
-	public:
-		Plant(int power, Position position);
-		Plant();
+public:
+	Plant(int power, const Position &position); // added const
+	Plant();
 
-		void move(int dx, int dy);
+	void move(int dx, int dy);
+	virtual ~Plant() {} // virtual destructor, stops memory leaks
 };

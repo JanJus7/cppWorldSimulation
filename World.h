@@ -15,28 +15,27 @@ private:
 	vector<Organism> organisms;
 	char separator = '.';
 
-	string getOrganismFromPosition(int x, int y);
-	bool isPositionOnWorld(int x, int y);
-	bool isPositionFree(Position position);
+	string getOrganismFromPosition(int x, int y) const;	 // added const
+	bool isPositionOnWorld(int x, int y) const;			 // added const
+	bool isPositionFree(const Position &position) const; // added const
 
 public:
 	World(int worldX, int worldY);
 	World() : World(6, 6) {};
 
-	int getWorldX();
+	int getWorldX() const; // added const
 	void setWorldX(int worldX);
-	int getWorldY();
+	int getWorldY() const; // added const
 	void setWorldY(int worldY);
 
-	int getTurn();
-	
+	int getTurn() const; // added const
+
 	void addOrganism(Organism *organism);
-	vector<Position> getVectorOfFreePositionsAround(Position position);
+	vector<Position> getVectorOfFreePositionsAround(const Position &position) const; // added const
 	void makeTurn();
 
-	void writeWorld(string fileName);
-	void readWorld(string fileName);
-	
-	string toString();
+	void writeWorld(const string &fileName) const; // added const
+	void readWorld(const string &fileName);		   // added const
 
+	string toString() const; // added const
 };

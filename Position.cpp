@@ -1,16 +1,12 @@
 #include "Position.h"
 #include <cmath> // added because of "sqrt is undefined message"
 
-
 Position::Position(int x, int y)
-{
-	setX(x);
-	setY(y);
-}
+	: x(x), y(y) {} // Refactored constructor with parameters
 
-int Position::getX()
+int Position::getX() const // added const
 {
-	return this->x;
+	return x; // no need of this->
 }
 
 void Position::setX(int x)
@@ -21,9 +17,9 @@ void Position::setX(int x)
 		this->x = 0;
 }
 
-int Position::getY()
+int Position::getY() const // added const
 {
-	return this->y;
+	return y; // no need of this->
 }
 
 void Position::setY(int y)
@@ -34,16 +30,16 @@ void Position::setY(int y)
 		this->y = 0;
 }
 
-string Position::toString()
+string Position::toString() const // added const
 {
 	return "(" + to_string(getX()) + ", " + to_string(getY()) + ")";
 }
 
-double Position::distance(Position position)
+double Position::distance(const Position &position)
 {
-	double dx = (double)this->getX() - (double)position.getX();
-	double dy = (double)this->getY() - (double)position.getY();
-	return sqrt( (dx * dx) + (dy * dy) );
+	double dx = (double)getX() - (double)position.getX();
+	double dy = (double)getY() - (double)position.getY();
+	return sqrt((dx * dx) + (dy * dy));
 }
 
 void Position::move(int dx, int dy)

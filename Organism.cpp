@@ -1,37 +1,33 @@
 #include "Organism.h"
 
 Organism::Organism(int power, Position position)
-{
-	setPower(power);
-	setPosition(position);
-	setSpecies("O");
-}
+	: power(power), position(position), species("O") {} // Refactored constructor with parametesr
 
-int Organism::getPower()
+int Organism::getPower() const // added const necause it doesn't change the object
 {
-	return this->power;
+	return power; // no need of this->, no object modification
 }
 
 void Organism::setPower(int power)
 {
-	this->power = power;
+	this->power = power; // this-> stayed cus "set" - it modifes the object
 }
 
-Position Organism::getPosition()
+Position Organism::getPosition() const // added const
 {
-	return this->position;
+	return position; // no need of this->
 }
 
-void Organism::setPosition(Position position)
+void Organism::setPosition(const Position &position) // added const now it doesn't make a copy of an object
 {
 	this->position = position;
 }
 
-string Organism::toString()
+string Organism::toString() const // added const
 {
-	return "{ species: " + this->getSpecies() + 
-		", power: " + to_string(getPower()) + 
-		", position: " + getPosition().toString() + "}";
+	return "{ species: " + getSpecies() +
+		   ", power: " + to_string(getPower()) +
+		   ", position: " + getPosition().toString() + "}";
 }
 
 void Organism::move(int dx, int dy)
@@ -39,12 +35,12 @@ void Organism::move(int dx, int dy)
 	position.move(dx, dy);
 }
 
-string Organism::getSpecies()
+string Organism::getSpecies() const // added const
 {
-	return this->species;
+	return species;
 }
 
-void Organism::setSpecies(string spec)
+void Organism::setSpecies(const string &spec) // added const
 {
-	this->species = spec;
+	species = spec; // no need of this->, no name conflict
 }

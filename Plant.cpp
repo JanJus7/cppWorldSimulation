@@ -1,6 +1,7 @@
 #include "Plant.h"
 
-Plant::Plant(int power, Position position) : Organism(power, position)
+Plant::Plant(int power, const Position &position) // added const
+	: Organism(power, position)
 {
 	setSpecies("P");
 }
@@ -14,4 +15,3 @@ void Plant::move(int dx, int dy)
 {
 	Organism::move(0, 0);
 }
-

@@ -5,8 +5,8 @@ using namespace std;
 
 class Animal : public Organism
 {
-	public:
-		Animal(int power, Position position);
-		Animal();
-
+public:
+	Animal(int power, const Position &position); // added const
+	Animal();
+	virtual ~Animal() {} // vitual destructor, stops memory leaks
 };
