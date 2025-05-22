@@ -2,6 +2,8 @@
 #include <fstream>
 #include <algorithm> // Added that for remove_if
 
+using namespace std;
+
 string World::getOrganismFromPosition(int x, int y) const // added const
 {
 	for (Organism org : organisms)

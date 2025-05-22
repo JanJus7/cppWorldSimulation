@@ -1,8 +1,6 @@
 #pragma once
 #include "Organism.h"
 
-using namespace std;
-
 class Animal : public Organism
 {
 public:
