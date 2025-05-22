@@ -1,5 +1,7 @@
 #include "Organism.h"
 
+using namespace std;
+
 Organism::Organism(int power, Position position)
 	: power(power), position(position), species("O") {} // Refactored constructor with parametesr
 

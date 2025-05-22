@@ -1,6 +1,8 @@
 #include "Position.h"
 #include <cmath> // added because of "sqrt is undefined message"
 
+using namespace std;
+
 Position::Position(int x, int y)
 	: x(x), y(y) {} // Refactored constructor with parameters
 
