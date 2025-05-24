@@ -1,9 +1,39 @@
 #include "Organism.h"
+#include <iostream>
 
 using namespace std;
 
 Organism::Organism(int power, Position position)
 	: power(power), position(position), species("O") {} // Refactored constructor with parametesr
+
+Organism::Organism(const Organism& other)
+    : power(other.power), position(other.position), species(other.species), ancestors(other.ancestors) {}
+
+Organism::Organism(Organism&& other) noexcept
+    : power(other.power),
+      position(std::move(other.position)),
+      species(std::move(other.species)),
+      ancestors(std::move(other.ancestors)) {}
+
+Organism& Organism::operator=(const Organism& other) {
+    if (this != &other) {
+        power = other.power;
+        position = other.position;
+        species = other.species;
+        ancestors = other.ancestors;
+    }
+    return *this;
+}
+
+Organism& Organism::operator=(Organism&& other) noexcept {
+    if (this != &other) {
+        power = other.power;
+        position = std::move(other.position);
+        species = std::move(other.species);
+        ancestors = std::move(other.ancestors);
+    }
+    return *this;
+}
 
 int Organism::getPower() const // added const necause it doesn't change the object
 {
@@ -45,4 +75,21 @@ string Organism::getSpecies() const // added const
 void Organism::setSpecies(const string &spec) // added const
 {
 	species = spec; // no need of this->, no name conflict
+}
+
+Organism::~Organism() {}
+
+void Organism::addAncestor(int birthTurn, int deathTurn) {
+    ancestors.emplace_back(birthTurn, deathTurn);
+}
+
+const vector<pair<int, int>>& Organism::getAncestors() const {
+    return ancestors;
+}
+
+void Organism::printAncestors() const {
+    cout << "Ancestors: ";
+    for (const auto& [birth, death] : ancestors)
+        cout << "(" << birth << ", " << death << ") ";
+    cout << endl;
 }

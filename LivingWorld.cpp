@@ -57,6 +57,21 @@ int main()
 	world.addOrganism(new Plant(3, posP2));
 	world.addOrganism(new Animal(6, posW3));
 
+	Organism *parent = new Animal(5, Position(1, 1));
+	parent->addAncestor(0, 10);
+
+	Organism *child = new Animal(3, Position(2, 2));
+	*child = *parent;
+	child->addAncestor(0, 10);
+
+	cout << "PARENT:\n";
+	cout << parent->toString() << endl;
+	parent->printAncestors();
+
+	cout << "CHILD:\n";
+	cout << child->toString() << endl;
+	child->printAncestors();
+
 	auto positions = world.getVectorOfFreePositionsAround(Position(5, 5));
 
 	for (auto pos : positions)
