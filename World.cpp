@@ -1,4 +1,6 @@
 #include "World.h"
+#include "Plant.h"
+#include "Animal.h"
 #include <fstream>
 #include <algorithm> // Added that for remove_if
 
@@ -6,9 +8,9 @@ using namespace std;
 
 string World::getOrganismFromPosition(int x, int y) const // added const
 {
-	for (Organism org : organisms)
-		if (org.getPosition().getX() == x && org.getPosition().getY() == y)
-			return org.getSpecies();
+	for (Organism *org : organisms)
+		if (org->getPosition().getX() == x && org->getPosition().getY() == y)
+			return org->getSpecies();
 	return "";
 }
 
@@ -74,7 +76,7 @@ int World::getTurn() const // added const
 
 void World::addOrganism(Organism *organism)
 {
-	this->organisms.push_back(*organism);
+	this->organisms.push_back(organism);
 }
 
 void World::makeTurn()
@@ -84,14 +86,16 @@ void World::makeTurn()
 	int randomIndex;
 
 	srand(time(0));
-	for (auto &org : organisms)
+	for (Organism *org : organisms)
 	{
-		newPositions = getVectorOfFreePositionsAround(org.getPosition());
+		newPositions = getVectorOfFreePositionsAround(org->getPosition());
 		numberOfNewPositions = newPositions.size();
 		if (numberOfNewPositions > 0)
 		{
-			randomIndex = rand() % numberOfNewPositions;
-			org.setPosition(newPositions[randomIndex]);
+			Position newPos = newPositions[rand() % numberOfNewPositions];
+			int dx = newPos.getX() - org->getPosition().getX();
+			int dy = newPos.getY() - org->getPosition().getY();
+			org->move(dx, dy);
 		}
 	}
 	turn++;
@@ -111,13 +115,13 @@ void World::writeWorld(const string &fileName) const // added const
 		for (int i = 0; i < orgs_size; i++)
 		{
 			int data;
-			data = this->organisms[i].getPower();
+			data = this->organisms[i]->getPower();
 			my_file.write((char *)&data, sizeof(int));
-			data = this->organisms[i].getPosition().getX();
+			data = this->organisms[i]->getPosition().getX();
 			my_file.write((char *)&data, sizeof(int));
-			data = this->organisms[i].getPosition().getY();
+			data = this->organisms[i]->getPosition().getY();
 			my_file.write((char *)&data, sizeof(int));
-			string s_data = this->organisms[i].getSpecies();
+			string s_data = this->organisms[i]->getSpecies();
 			int s_size = s_data.size();
 			my_file.write((char *)&s_size, sizeof(int));
 			my_file.write(s_data.data(), s_data.size());
@@ -134,41 +138,43 @@ void World::readWorld(const string &fileName) // added const
 	{
 		int result;
 		my_file.read((char *)&result, sizeof(int));
-		this->worldX = (int)result;
+		this->worldX = result;
 		my_file.read((char *)&result, sizeof(int));
-		this->worldY = (int)result;
+		this->worldY = result;
 		my_file.read((char *)&result, sizeof(int));
-		this->turn = (int)result;
+		this->turn = result;
 		my_file.read((char *)&result, sizeof(int));
-		int orgs_size = (int)result;
-		vector<Organism> new_organisms;
+		int orgs_size = result;
+
+		for (Organism *org : organisms)
+			delete org;
+		organisms.clear();
+
 		for (int i = 0; i < orgs_size; i++)
 		{
-			int power;
-			my_file.read((char *)&result, sizeof(int));
-			power = (int)result;
-
-			int pos_x;
-			my_file.read((char *)&result, sizeof(int));
-			pos_x = (int)result;
-			int pos_y;
-			my_file.read((char *)&result, sizeof(int));
-			pos_y = (int)result;
-			Position pos{pos_x, pos_y};
-
-			int s_size;
-			my_file.read((char *)&result, sizeof(int));
-			s_size = (int)result;
+			int power, pos_x, pos_y, s_size;
+			my_file.read((char *)&power, sizeof(int));
+			my_file.read((char *)&pos_x, sizeof(int));
+			my_file.read((char *)&pos_y, sizeof(int));
+			my_file.read((char *)&s_size, sizeof(int));
 
 			string species;
 			species.resize(s_size);
-			my_file.read((char *)&species[0], s_size);
+			my_file.read(&species[0], s_size);
 
-			Organism org(power, pos);
-			org.setSpecies(species);
-			new_organisms.push_back(org);
+			Position pos{pos_x, pos_y};
+			Organism *org = nullptr;
+
+			if (species == "P")
+				org = new Plant(power, pos);
+			else if (species == "A")
+				org = new Animal(power, pos);
+			else
+				org = new Organism(power, pos);
+
+			if (org)
+				organisms.push_back(org);
 		}
-		this->organisms = new_organisms;
 		my_file.close();
 	}
 }
@@ -191,4 +197,12 @@ string World::toString() const // added const
 		result += "\n";
 	}
 	return result;
+}
+
+World::~World()
+{
+	for (Organism *org : organisms)
+	{
+		delete org;
+	}
 }

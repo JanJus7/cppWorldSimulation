@@ -48,19 +48,14 @@ int main()
 	// World test
 	World world;
 	Position posP1{4, 5};
-	Plant plantW1{3, posP1};
 	Position posP2{5, 4};
-	Plant plantW2{3, posP2};
-
 	Position posW2{3, 2};
-	Animal animalW1{6, posW2};
 	Position posW3{2, 3};
-	Animal animalW2{6, posW3};
 
-	world.addOrganism(&plantW1);
-	world.addOrganism(&plantW2);
-	world.addOrganism(&animalW1);
-	world.addOrganism(&animalW2);
+	world.addOrganism(new Plant(3, posP1));
+	world.addOrganism(new Animal(6, posW2));
+	world.addOrganism(new Plant(3, posP2));
+	world.addOrganism(new Animal(6, posW3));
 
 	auto positions = world.getVectorOfFreePositionsAround(Position(5, 5));
 

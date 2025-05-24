@@ -11,7 +11,4 @@ Plant::Plant() : Organism()
 	setSpecies("P");
 }
 
-void Plant::move(int dx, int dy)
-{
-	Organism::move(0, 0);
-}
+void Plant::move(int dx, int dy) {}

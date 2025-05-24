@@ -7,6 +7,6 @@ public:
 	Plant(int power, const Position &position); // added const
 	Plant();
 
-	void move(int dx, int dy);
+	void move(int dx, int dy) override;
 	virtual ~Plant() {} // virtual destructor, stops memory leaks
 };
