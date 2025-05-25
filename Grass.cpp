@@ -16,3 +16,9 @@ Grass::Grass() : Plant(0, Position(0, 0))
     setLiveLength(6);
     setPowerToReproduce(3);
 }
+
+Organism* Grass::Reproduce(const Position& newPos) const {
+    return new Grass(newPos);
+}
+
+Grass::~Grass() {}

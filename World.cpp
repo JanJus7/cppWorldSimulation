@@ -1,6 +1,8 @@
 #include "World.h"
 #include "Plant.h"
 #include "Animal.h"
+#include "Grass.h"
+#include "Sheep.h"
 #include <fstream>
 #include <algorithm> // Added that for remove_if
 
@@ -86,16 +88,29 @@ void World::makeTurn()
 	int randomIndex;
 
 	srand(time(0));
-	for (Organism *org : organisms)
+	vector<Organism*> snapshot = organisms;
+	for (Organism *org : snapshot)
 	{
 		newPositions = getVectorOfFreePositionsAround(org->getPosition());
 		numberOfNewPositions = newPositions.size();
+		org->setPower(org->getPower() + 1);
 		if (numberOfNewPositions > 0)
 		{
 			Position newPos = newPositions[rand() % numberOfNewPositions];
 			int dx = newPos.getX() - org->getPosition().getX();
 			int dy = newPos.getY() - org->getPosition().getY();
 			org->move(dx, dy);
+		}
+
+		if (org->getPower() >= org->getPowerToReproduce())
+		{
+			if (numberOfNewPositions > 0)
+			{
+				Position newPos = newPositions[rand() % numberOfNewPositions];
+				Organism *child = org->Reproduce(newPos);
+				addOrganism(child);
+				org->setPower(0);
+			}
 		}
 	}
 	turn++;
@@ -169,8 +184,12 @@ void World::readWorld(const string &fileName) // added const
 				org = new Plant(power, pos);
 			else if (species == "A")
 				org = new Animal(power, pos);
+			else if (species == "S")
+				org = new Sheep(pos); // Sheep ma stałe atrybuty
+			else if (species == "G")
+				org = new Grass(pos);
 			else
-				org = new Organism(power, pos);
+				continue;
 
 			if (org)
 				organisms.push_back(org);

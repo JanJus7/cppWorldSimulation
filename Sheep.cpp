@@ -16,3 +16,9 @@ Sheep::Sheep() : Animal(3, Position(0, 0))
     setLiveLength(10);
     setPowerToReproduce(6);
 }
+
+Organism* Sheep::Reproduce(const Position& newPos) const {
+    return new Sheep(newPos);
+}
+
+Sheep::~Sheep() {}

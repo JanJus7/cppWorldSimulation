@@ -33,19 +33,19 @@ int main()
 	// cout << org1.toString() << endl;
 
 	// Plant & Animal
-	Plant plant{3, p3};
-	Animal animal{5, p2};
-	Plant plant2;
-	Animal animal2;
+	// Plant plant{3, p3};
+	// Animal animal{5, p2};
+	// Plant plant2;
+	// Animal animal2;
 
-	cout << plant.toString() << endl;
-	cout << animal.toString() << endl;
-	cout << plant2.toString() << endl;
-	cout << animal2.toString() << endl;
-	plant.move(3, 4);
-	cout << plant.toString() << endl;
-	animal.move(1, 2);
-	cout << animal.toString() << endl;
+	// cout << plant.toString() << endl;
+	// cout << animal.toString() << endl;
+	// cout << plant2.toString() << endl;
+	// cout << animal2.toString() << endl;
+	// plant.move(3, 4);
+	// cout << plant.toString() << endl;
+	// animal.move(1, 2);
+	// cout << animal.toString() << endl;
 
 	// World test
 	World world;
@@ -98,9 +98,28 @@ int main()
 	world.makeTurn();
 	cout << world.toString() << endl;
 
-	// powrot do Tury 2
-	world.readWorld("world.bin");
+	// Tura 4
+	world.makeTurn();
 	cout << world.toString() << endl;
+
+	// Tura 5
+	world.makeTurn();	cout << world.toString() << endl;
+
+	// Tura 6
+	world.makeTurn();
+	cout << world.toString() << endl;
+
+	// Tura 7
+	world.makeTurn();
+	cout << world.toString() << endl;
+
+	// Tura 8
+	world.makeTurn();
+	cout << world.toString() << endl;
+
+	// powrot do Tury 2
+	// world.readWorld("world.bin");
+	// cout << world.toString() << endl;
 
 	return 0;
 }

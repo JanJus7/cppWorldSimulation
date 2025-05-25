@@ -47,4 +47,5 @@ public:
 
 	virtual ~Organism(); // virtual destructor, stops memory leaks
 	virtual void move(int dx, int dy);
+	virtual Organism* Reproduce(const Position& newPos) const = 0;
 };

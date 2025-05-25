@@ -6,6 +6,8 @@ class Grass : public Plant
     public:
         Grass(const Position &position);
         Grass();
-        virtual ~Grass() {}
+        Organism* Reproduce(const Position& newPos) const override;
+        virtual ~Grass();
 
 };
+
