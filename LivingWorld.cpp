@@ -4,6 +4,8 @@
 #include "Plant.h"
 #include "Animal.h"
 #include "World.h"
+#include "Grass.h"
+#include "Sheep.h"
 
 using namespace std;
 
@@ -52,11 +54,13 @@ int main()
 	Position posW2{3, 2};
 	Position posW3{2, 3};
 
-	world.addOrganism(new Plant(3, posP1));
-	world.addOrganism(new Animal(6, posW2));
-	world.addOrganism(new Plant(3, posP2));
-	world.addOrganism(new Animal(6, posW3));
+	world.addOrganism(new Grass(posP1));
+	world.addOrganism(new Sheep(posW2));
+	world.addOrganism(new Grass(posP2));
+	world.addOrganism(new Sheep(posW3));
 
+	cout << endl;
+	cout << "Ancestors test:" << endl;
 	Organism *parent = new Animal(5, Position(1, 1));
 	parent->addAncestor(0, 10);
 
