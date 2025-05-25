@@ -9,6 +9,9 @@ private:
 	int power;
 	Position position;
 	std::string species;
+	int initiative;
+	int liveLength;
+	int powerToReproduce;
 	std::vector<std::pair<int, int>> ancestors; // Ancestrors vector
 
 public:
@@ -16,22 +19,29 @@ public:
 	Organism() : power(0), position(0, 0), species("O") {};
 
 	// History copy and move constructors
-	Organism(const Organism& other);
-    Organism(Organism&& other) noexcept;
+	Organism(const Organism &other);
+	Organism(Organism &&other) noexcept;
 
-	Organism& operator=(const Organism& other);
-    Organism& operator=(Organism&& other) noexcept;
+	Organism &operator=(const Organism &other);
+	Organism &operator=(Organism &&other) noexcept;
 
 	void addAncestor(int birthTurn, int deathTurn);
-    const std::vector<std::pair<int, int>>& getAncestors() const;
+	const std::vector<std::pair<int, int>> &getAncestors() const;
 	void printAncestors() const;
 
 	int getPower() const; // added const
 	void setPower(int power);
 	Position getPosition() const;				// added const
 	void setPosition(const Position &position); // added const
-	std::string getSpecies() const;					// added const
-	void setSpecies(const std::string &spec);		// added const
+	std::string getSpecies() const;				// added const
+	void setSpecies(const std::string &spec);	// added const
+	
+	int getInitiative() const;
+	void setInitiative(int initiative);
+	int getLiveLength() const;
+	void setLiveLength(int length);
+	int getPowerToReproduce() const;
+	void setPowerToReproduce(int power);
 
 	std::string toString() const; // added const
 

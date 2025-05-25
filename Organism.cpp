@@ -7,12 +7,21 @@ Organism::Organism(int power, Position position)
 	: power(power), position(position), species("O") {} // Refactored constructor with parametesr
 
 Organism::Organism(const Organism& other)
-    : power(other.power), position(other.position), species(other.species), ancestors(other.ancestors) {}
+    : power(other.power),
+      position(other.position),
+      species(other.species),
+      initiative(other.initiative),
+      liveLength(other.liveLength),
+      powerToReproduce(other.powerToReproduce),
+      ancestors(other.ancestors) {}
 
 Organism::Organism(Organism&& other) noexcept
     : power(other.power),
       position(std::move(other.position)),
       species(std::move(other.species)),
+      initiative(other.initiative),
+      liveLength(other.liveLength),
+      powerToReproduce(other.powerToReproduce),
       ancestors(std::move(other.ancestors)) {}
 
 Organism& Organism::operator=(const Organism& other) {
@@ -20,6 +29,9 @@ Organism& Organism::operator=(const Organism& other) {
         power = other.power;
         position = other.position;
         species = other.species;
+        initiative = other.initiative;
+        liveLength = other.liveLength;
+        powerToReproduce = other.powerToReproduce;
         ancestors = other.ancestors;
     }
     return *this;
@@ -30,6 +42,9 @@ Organism& Organism::operator=(Organism&& other) noexcept {
         power = other.power;
         position = std::move(other.position);
         species = std::move(other.species);
+        initiative = other.initiative;
+        liveLength = other.liveLength;
+        powerToReproduce = other.powerToReproduce;
         ancestors = std::move(other.ancestors);
     }
     return *this;
@@ -75,6 +90,30 @@ string Organism::getSpecies() const // added const
 void Organism::setSpecies(const string &spec) // added const
 {
 	species = spec; // no need of this->, no name conflict
+}
+
+int Organism::getInitiative() const {
+    return initiative;
+}
+
+void Organism::setInitiative(int initiative) {
+    this->initiative = initiative;
+}
+
+int Organism::getLiveLength() const {
+    return liveLength;
+}
+
+void Organism::setLiveLength(int length) {
+    this->liveLength = length;
+}
+
+int Organism::getPowerToReproduce() const {
+    return powerToReproduce;
+}
+
+void Organism::setPowerToReproduce(int power) {
+    this->powerToReproduce = power;
 }
 
 Organism::~Organism() {}
