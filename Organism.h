@@ -35,7 +35,7 @@ public:
 	void setPosition(const Position &position); // added const
 	std::string getSpecies() const;				// added const
 	void setSpecies(const std::string &spec);	// added const
-	
+
 	int getInitiative() const;
 	void setInitiative(int initiative);
 	int getLiveLength() const;
