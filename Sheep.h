@@ -3,8 +3,8 @@
 
 class Sheep : public Animal
 {
-public:
-    Sheep(const Position &position);
-    Sheep();
-    virtual ~Sheep() {} // virtual destructor, stops memory leaks
+    public:
+        Sheep(const Position &position);
+        Sheep();
+        virtual ~Sheep() {} // virtual destructor, stops memory leaks
 };
