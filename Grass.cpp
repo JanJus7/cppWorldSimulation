@@ -17,7 +17,8 @@ Grass::Grass() : Plant(0, Position(0, 0))
     setPowerToReproduce(3);
 }
 
-Organism* Grass::Reproduce(const Position& newPos) const {
+Organism *Grass::Reproduce(const Position &newPos) const
+{
     return new Grass(newPos);
 }
 

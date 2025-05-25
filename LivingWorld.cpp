@@ -103,7 +103,8 @@ int main()
 	cout << world.toString() << endl;
 
 	// Tura 5
-	world.makeTurn();	cout << world.toString() << endl;
+	world.makeTurn();
+	cout << world.toString() << endl;
 
 	// Tura 6
 	world.makeTurn();

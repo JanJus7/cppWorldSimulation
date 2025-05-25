@@ -88,7 +88,7 @@ void World::makeTurn()
 	int randomIndex;
 
 	srand(time(0));
-	vector<Organism*> snapshot = organisms;
+	vector<Organism *> snapshot = organisms;
 	for (Organism *org : snapshot)
 	{
 		newPositions = getVectorOfFreePositionsAround(org->getPosition());

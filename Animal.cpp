@@ -13,6 +13,7 @@ Animal::Animal() : Organism()
 
 Animal::~Animal() {}
 
-Organism* Animal::Reproduce(const Position& newPos) const {
-    return new Animal(this->getPower(), newPos);
+Organism *Animal::Reproduce(const Position &newPos) const
+{
+	return new Animal(this->getPower(), newPos);
 }
