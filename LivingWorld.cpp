@@ -118,6 +118,38 @@ int main()
 	world.makeTurn();
 	cout << world.toString() << endl;
 
+	// Tura 9
+	world.makeTurn();
+	cout << world.toString() << endl;
+
+	// Tura 10
+	world.makeTurn();
+	cout << world.toString() << endl;
+
+	// Tura 11
+	world.makeTurn();
+	cout << world.toString() << endl;
+
+	// Tura 12
+	world.makeTurn();
+	cout << world.toString() << endl;
+
+	// Tura 13
+	world.makeTurn();
+	cout << world.toString() << endl;
+
+	// Tura 14
+	world.makeTurn();
+	cout << world.toString() << endl;
+
+	// Tura 15
+	world.makeTurn();
+	cout << world.toString() << endl;
+
+	// Tura 16
+	world.makeTurn();
+	cout << world.toString() << endl;
+
 	// powrot do Tury 2
 	// world.readWorld("world.bin");
 	// cout << world.toString() << endl;

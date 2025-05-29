@@ -16,6 +16,8 @@ private:
 	std::string getOrganismFromPosition(int x, int y) const; // added const
 	bool isPositionOnWorld(int x, int y) const;				 // added const
 	bool isPositionFree(const Position &position) const;	 // added const
+	std::vector<Organism *> getEdibleOrganismsAround(const Organism *predator) const;
+	void removeOrganismAt(const Position &pos);
 
 public:
 	World(int worldX, int worldY);

@@ -7,5 +7,6 @@ public:
     Sheep(const Position &position);
     Sheep();
     Organism *Reproduce(const Position &newPos) const override;
+    bool canEat(const Organism *other) const override;
     virtual ~Sheep(); // virtual destructor, stops memory leaks
 };

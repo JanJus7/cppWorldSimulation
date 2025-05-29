@@ -22,4 +22,9 @@ Organism *Sheep::Reproduce(const Position &newPos) const
     return new Sheep(newPos);
 }
 
+bool Sheep::canEat(const Organism *other) const
+{
+    return other->getSpecies() == "G";
+}
+
 Sheep::~Sheep() {}

@@ -5,6 +5,7 @@
 #include "Sheep.h"
 #include <fstream>
 #include <algorithm> // Added that for remove_if
+#include <iostream> // Added for cout
 
 using namespace std;
 
@@ -89,30 +90,56 @@ void World::makeTurn()
 
 	srand(time(0));
 	vector<Organism *> snapshot = organisms;
+	srand(time(0));
 	for (Organism *org : snapshot)
 	{
-		newPositions = getVectorOfFreePositionsAround(org->getPosition());
-		numberOfNewPositions = newPositions.size();
-		org->setPower(org->getPower() + 1);
-		if (numberOfNewPositions > 0)
+		auto food = getEdibleOrganismsAround(org);
+		if (!food.empty())
 		{
-			Position newPos = newPositions[rand() % numberOfNewPositions];
+			Organism *prey = food[rand() % food.size()];
+			removeOrganismAt(prey->getPosition());
+			org->setPower(org->getPower() + 2);
+			continue;
+
+			cout << org->getSpecies() << " at " << org->getPosition().toString()
+				 << " ate " << prey->getSpecies() << " at " << prey->getPosition().toString() << endl;
+		}
+
+		auto newPositions = getVectorOfFreePositionsAround(org->getPosition());
+		if (!newPositions.empty())
+		{
+			Position newPos = newPositions[rand() % newPositions.size()];
 			int dx = newPos.getX() - org->getPosition().getX();
 			int dy = newPos.getY() - org->getPosition().getY();
 			org->move(dx, dy);
 		}
 
+		org->setPower(org->getPower() + 1);
+
 		if (org->getPower() >= org->getPowerToReproduce())
 		{
-			if (numberOfNewPositions > 0)
+			auto freeAround = getVectorOfFreePositionsAround(org->getPosition());
+			if (!freeAround.empty())
 			{
-				Position newPos = newPositions[rand() % numberOfNewPositions];
-				Organism *child = org->Reproduce(newPos);
+				Position spawn = freeAround[rand() % freeAround.size()];
+				Organism *child = org->Reproduce(spawn);
 				addOrganism(child);
 				org->setPower(0);
 			}
 		}
 	}
+
+	organisms.erase(
+		remove_if(organisms.begin(), organisms.end(), [](Organism *org)
+				  {
+                  if (org->isMarkedForRemoval())
+                  {
+                      delete org;
+                      return true;
+                  }
+                  return false; }),
+		organisms.end());
+
 	turn++;
 }
 
@@ -216,6 +243,48 @@ string World::toString() const // added const
 		result += "\n";
 	}
 	return result;
+}
+
+vector<Organism *> World::getEdibleOrganismsAround(const Organism *predator) const
+{
+	vector<Organism *> result;
+	Position pos = predator->getPosition();
+	int x = pos.getX();
+	int y = pos.getY();
+
+	for (Organism *target : organisms)
+	{
+		if (target == predator)
+			continue;
+
+		Position tPos = target->getPosition();
+		int dx = abs(tPos.getX() - x);
+		int dy = abs(tPos.getY() - y);
+
+		if (dx <= 1 && dy <= 1 && (dx != 0 || dy != 0))
+		{
+			auto animal = dynamic_cast<const Animal *>(predator);
+			if (animal && animal->canEat(target))
+			{
+				result.push_back(target);
+			}
+		}
+	}
+
+	return result;
+}
+
+void World::removeOrganismAt(const Position &pos)
+{
+	for (Organism *org : organisms)
+	{
+		if (org->getPosition().getX() == pos.getX() &&
+			org->getPosition().getY() == pos.getY())
+		{
+			org->markForRemoval();
+			break;
+		}
+	}
 }
 
 World::~World()

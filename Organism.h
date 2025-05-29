@@ -12,6 +12,7 @@ private:
 	int initiative;
 	int liveLength;
 	int powerToReproduce;
+	bool markedForRemoval = false;
 	std::vector<std::pair<int, int>> ancestors; // Ancestrors vector
 
 public:
@@ -42,6 +43,8 @@ public:
 	void setLiveLength(int length);
 	int getPowerToReproduce() const;
 	void setPowerToReproduce(int power);
+	void markForRemoval() { markedForRemoval = true; }
+	bool isMarkedForRemoval() const { return markedForRemoval; }
 
 	std::string toString() const; // added const
 
