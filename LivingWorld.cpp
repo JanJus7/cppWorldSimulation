@@ -55,8 +55,12 @@ int main()
 	Position posW3{2, 3};
 
 	world.addOrganism(new Grass(posP1));
-	world.addOrganism(new Sheep(posW2));
 	world.addOrganism(new Grass(posP2));
+	world.addOrganism(new Grass(Position(1, 1)));
+	world.addOrganism(new Grass(Position(0, 0)));
+	world.addOrganism(new Grass(Position(5, 5)));
+
+	world.addOrganism(new Sheep(posW2));
 	world.addOrganism(new Sheep(posW3));
 
 	cout << endl;
