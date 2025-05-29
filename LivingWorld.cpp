@@ -6,6 +6,7 @@
 #include "World.h"
 #include "Grass.h"
 #include "Sheep.h"
+#include "Milkweed.h"
 
 using namespace std;
 
@@ -59,6 +60,8 @@ int main()
 	world.addOrganism(new Grass(Position(1, 1)));
 	world.addOrganism(new Grass(Position(0, 0)));
 	world.addOrganism(new Grass(Position(5, 5)));
+
+	world.addOrganism(new Milkweed(Position(0, 1)));
 
 	world.addOrganism(new Sheep(posW2));
 	world.addOrganism(new Sheep(posW3));

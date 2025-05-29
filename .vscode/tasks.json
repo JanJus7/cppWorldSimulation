@@ -16,6 +16,7 @@
         "Position.cpp",
         "Grass.cpp",
         "Sheep.cpp",
+        "Milkweed.cpp",
         "-o",
         "world.out"
       ],
