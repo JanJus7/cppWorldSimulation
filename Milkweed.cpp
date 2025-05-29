@@ -6,7 +6,7 @@ Milkweed::Milkweed(const Position &position)
     setSpecies("D");
     setInitiative(0);
     setLiveLength(6);
-    setPowerToReproduce(2);
+    setPowerToReproduce(5);
 }
 
 Milkweed::Milkweed() : Plant(0, Position(0, 0))
@@ -14,7 +14,7 @@ Milkweed::Milkweed() : Plant(0, Position(0, 0))
     setSpecies("D");
     setInitiative(0);
     setLiveLength(6);
-    setPowerToReproduce(2);
+    setPowerToReproduce(5);
 }
 
 Organism *Milkweed::Reproduce(const Position &newPos) const
