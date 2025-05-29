@@ -49,22 +49,22 @@ int main()
 	// cout << animal.toString() << endl;
 
 	// World test
-	World world;
-	Position posP1{4, 5};
-	Position posP2{5, 4};
-	Position posW2{3, 2};
-	Position posW3{2, 3};
+	World world(30, 10);
+	// Position posP1{4, 5};
+	// Position posP2{5, 4};
+	// Position posW2{3, 2};
+	// Position posW3{2, 3};
 
-	world.addOrganism(new Grass(posP1));
-	world.addOrganism(new Grass(posP2));
-	world.addOrganism(new Grass(Position(1, 1)));
-	world.addOrganism(new Grass(Position(0, 0)));
-	world.addOrganism(new Grass(Position(5, 5)));
+	world.addOrganism(new Grass(Position(2, 2)));
+	world.addOrganism(new Grass(Position(10, 5)));
+	world.addOrganism(new Grass(Position(20, 3)));
+	world.addOrganism(new Grass(Position(25, 8)));
 
-	world.addOrganism(new Milkweed(Position(0, 1)));
+	world.addOrganism(new Milkweed(Position(15, 5)));
 
-	world.addOrganism(new Sheep(posW2));
-	world.addOrganism(new Sheep(posW3));
+	world.addOrganism(new Sheep(Position(5, 2)));
+	world.addOrganism(new Sheep(Position(12, 4)));
+	world.addOrganism(new Sheep(Position(18, 6)));
 
 	cout << endl;
 	cout << "Ancestors test:" << endl;
