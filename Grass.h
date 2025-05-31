@@ -7,5 +7,6 @@ public:
     Grass(const Position &position);
     Grass();
     Organism *Reproduce(const Position &newPos) const override;
+    void placeholder() const override {}
     virtual ~Grass();
 };

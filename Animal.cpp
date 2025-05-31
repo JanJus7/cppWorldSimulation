@@ -13,10 +13,10 @@ Animal::Animal() : Organism()
 
 Animal::~Animal() {}
 
-Organism *Animal::Reproduce(const Position &newPos) const
-{
-	return new Animal(this->getPower(), newPos);
-}
+// Organism *Animal::Reproduce(const Position &newPos) const
+// {
+// 	return new Animal(this->getPower(), newPos);
+// }
 
 bool Animal::canEat(const Organism *other) const
 {

@@ -15,7 +15,7 @@ void Plant::move(int dx, int dy) {}
 
 Plant::~Plant() {}
 
-Organism *Plant::Reproduce(const Position &newPos) const
-{
-	return new Plant(this->getPower(), newPos);
-};
+// Organism *Plant::Reproduce(const Position &newPos) const
+// {
+// 	return new Plant(this->getPower(), newPos);
+// };

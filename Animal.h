@@ -6,7 +6,7 @@ class Animal : public Organism
 public:
 	Animal(int power, const Position &position); // added const
 	Animal();
-	Organism *Reproduce(const Position &newPos) const override;
-	virtual bool canEat(const Organism *other) const;
+	// virtual Organism *Reproduce(const Position &newPos) const = 0;
+	virtual bool canEat(const Organism *other) const = 0;
 	virtual ~Animal(); // vitual destructor, stops memory leaks
 };

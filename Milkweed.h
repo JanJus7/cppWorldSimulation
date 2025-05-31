@@ -7,5 +7,6 @@ public:
     Milkweed(const Position &position);
     Milkweed();
     Organism *Reproduce(const Position &newPos) const override;
+    void placeholder() const override {}
     virtual ~Milkweed();
 };
