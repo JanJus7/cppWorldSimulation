@@ -18,6 +18,7 @@
         "Sheep.cpp",
         "Milkweed.cpp",
         "Wolf.cpp",
+        "Toadstool.cpp",
         "-o",
         "world.out"
       ],
