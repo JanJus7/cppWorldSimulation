@@ -3,6 +3,9 @@
 #include "Animal.h"
 #include "Grass.h"
 #include "Sheep.h"
+#include "Milkweed.h"
+#include "Wolf.h"
+#include "Toadstool.h"
 #include <fstream>
 #include <algorithm> // Added that for remove_if
 #include <iostream>	 // Added for cout
@@ -217,14 +220,16 @@ void World::readWorld(const string &fileName) // added const
 			Position pos{pos_x, pos_y};
 			Organism *org = nullptr;
 
-			if (species == "P")
-				org = new Plant(power, pos);
-			else if (species == "A")
-				org = new Animal(power, pos);
-			else if (species == "S")
+			if (species == "S")
 				org = new Sheep(pos);
 			else if (species == "G")
 				org = new Grass(pos);
+			else if (species == "W")
+				org = new Wolf(pos);
+			else if (species == "M")
+				org = new Milkweed(pos);
+			else if (species == "T")
+				org = new Toadstool(pos);
 			else
 				continue;
 
