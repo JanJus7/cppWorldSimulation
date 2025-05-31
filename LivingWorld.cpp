@@ -105,7 +105,6 @@ int main()
 		world.makeTurn();
 		cout << world.toString() << endl;
 	}
-	
 
 	// powrot do Tury 2
 	// world.readWorld("world.bin");

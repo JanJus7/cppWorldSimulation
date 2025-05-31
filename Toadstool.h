@@ -3,7 +3,7 @@
 
 class Toadstool : public Plant
 {
-    public:
+public:
     Toadstool(const Position &position);
     Toadstool();
     Organism *Reproduce(const Position &newPos) const override;
