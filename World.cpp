@@ -5,7 +5,7 @@
 #include "Sheep.h"
 #include <fstream>
 #include <algorithm> // Added that for remove_if
-#include <iostream> // Added for cout
+#include <iostream>	 // Added for cout
 
 using namespace std;
 
@@ -97,12 +97,22 @@ void World::makeTurn()
 		if (!food.empty())
 		{
 			Organism *prey = food[rand() % food.size()];
-			removeOrganismAt(prey->getPosition());
-			org->setPower(org->getPower() + 2);
-			continue;
+			string preySpecies = prey->getSpecies();
 
-			cout << org->getSpecies() << " at " << org->getPosition().toString()
-				 << " ate " << prey->getSpecies() << " at " << prey->getPosition().toString() << endl;
+			if (preySpecies == "T")
+			{
+				removeOrganismAt(prey->getPosition());
+				org->markForRemoval();
+				continue;
+			}
+
+			auto animal = dynamic_cast<Animal *>(org); // to check if org is animal class
+			if (animal && animal->canEat(prey))
+			{
+				removeOrganismAt(prey->getPosition());
+				org->setPower(org->getPower() + 2);
+				continue;
+			}
 		}
 
 		auto newPositions = getVectorOfFreePositionsAround(org->getPosition());
@@ -212,7 +222,7 @@ void World::readWorld(const string &fileName) // added const
 			else if (species == "A")
 				org = new Animal(power, pos);
 			else if (species == "S")
-				org = new Sheep(pos); // Sheep ma stałe atrybuty
+				org = new Sheep(pos);
 			else if (species == "G")
 				org = new Grass(pos);
 			else
@@ -264,7 +274,7 @@ vector<Organism *> World::getEdibleOrganismsAround(const Organism *predator) con
 		if (dx <= 1 && dy <= 1 && (dx != 0 || dy != 0))
 		{
 			auto animal = dynamic_cast<const Animal *>(predator);
-			if (animal && animal->canEat(target))
+			if (animal && (animal->canEat(target) || target->getSpecies() == "T"))
 			{
 				result.push_back(target);
 			}

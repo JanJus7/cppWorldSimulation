@@ -8,6 +8,7 @@
 #include "Sheep.h"
 #include "Milkweed.h"
 #include "Wolf.h"
+#include "Toadstool.h"
 
 using namespace std;
 
@@ -56,12 +57,14 @@ int main()
 	// Position posW2{3, 2};
 	// Position posW3{2, 3};
 
-	world.addOrganism(new Grass(Position(2, 2)));
+	// world.addOrganism(new Grass(Position(2, 2)));
 	world.addOrganism(new Grass(Position(10, 5)));
-	world.addOrganism(new Grass(Position(20, 3)));
+	// world.addOrganism(new Grass(Position(20, 3)));
 	world.addOrganism(new Grass(Position(25, 8)));
 
 	world.addOrganism(new Milkweed(Position(15, 5)));
+
+	world.addOrganism(new Toadstool(Position(15, 5)));
 
 	world.addOrganism(new Sheep(Position(5, 2)));
 	world.addOrganism(new Sheep(Position(12, 4)));
@@ -92,7 +95,10 @@ int main()
 	for (auto pos : positions)
 		cout << pos.toString() << endl;
 
-	world.writeWorld("world.bin");
+	// world.writeWorld("world.bin");
+
+	// Tura 0
+	cout << world.toString() << endl;
 
 	for (int i = 0; i < 75; i++)
 	{
