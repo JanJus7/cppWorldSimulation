@@ -68,6 +68,7 @@ int main()
 	world.addOrganism(new Sheep(Position(18, 6)));
 
 	world.addOrganism(new Wolf(Position(7, 7)));
+	world.addOrganism(new Wolf(Position(25, 10)));
 
 	cout << endl;
 	cout << "Ancestors test:" << endl;
