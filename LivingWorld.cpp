@@ -7,6 +7,7 @@
 #include "Grass.h"
 #include "Sheep.h"
 #include "Milkweed.h"
+#include "Wolf.h"
 
 using namespace std;
 
@@ -66,6 +67,8 @@ int main()
 	world.addOrganism(new Sheep(Position(12, 4)));
 	world.addOrganism(new Sheep(Position(18, 6)));
 
+	world.addOrganism(new Wolf(Position(7, 7)));
+
 	cout << endl;
 	cout << "Ancestors test:" << endl;
 	Organism *parent = new Animal(5, Position(1, 1));
@@ -88,74 +91,14 @@ int main()
 	for (auto pos : positions)
 		cout << pos.toString() << endl;
 
-	// Tura 0
-	cout << world.toString() << endl;
-
-	// Tura 1
-	world.makeTurn();
-	cout << world.toString() << endl;
-
-	// Tura 2
-	world.makeTurn();
-	cout << world.toString() << endl;
-
 	world.writeWorld("world.bin");
 
-	// Tura 3
-	world.makeTurn();
-	cout << world.toString() << endl;
-
-	// Tura 4
-	world.makeTurn();
-	cout << world.toString() << endl;
-
-	// Tura 5
-	world.makeTurn();
-	cout << world.toString() << endl;
-
-	// Tura 6
-	world.makeTurn();
-	cout << world.toString() << endl;
-
-	// Tura 7
-	world.makeTurn();
-	cout << world.toString() << endl;
-
-	// Tura 8
-	world.makeTurn();
-	cout << world.toString() << endl;
-
-	// Tura 9
-	world.makeTurn();
-	cout << world.toString() << endl;
-
-	// Tura 10
-	world.makeTurn();
-	cout << world.toString() << endl;
-
-	// Tura 11
-	world.makeTurn();
-	cout << world.toString() << endl;
-
-	// Tura 12
-	world.makeTurn();
-	cout << world.toString() << endl;
-
-	// Tura 13
-	world.makeTurn();
-	cout << world.toString() << endl;
-
-	// Tura 14
-	world.makeTurn();
-	cout << world.toString() << endl;
-
-	// Tura 15
-	world.makeTurn();
-	cout << world.toString() << endl;
-
-	// Tura 16
-	world.makeTurn();
-	cout << world.toString() << endl;
+	for (int i = 0; i < 75; i++)
+	{
+		world.makeTurn();
+		cout << world.toString() << endl;
+	}
+	
 
 	// powrot do Tury 2
 	// world.readWorld("world.bin");
