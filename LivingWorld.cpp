@@ -73,22 +73,22 @@ int main()
 	world.addOrganism(new Wolf(Position(7, 7)));
 	world.addOrganism(new Wolf(Position(25, 10)));
 
-	cout << endl;
-	cout << "Ancestors test:" << endl;
-	Organism *parent = new Animal(5, Position(1, 1));
-	parent->addAncestor(0, 10);
+	// cout << endl;
+	// cout << "Ancestors test:" << endl;
+	// Organism *parent = new Sheep(5, Position(1, 1));
+	// parent->addAncestor(0, 10);
 
-	Organism *child = new Animal(3, Position(2, 2));
-	*child = *parent;
-	child->addAncestor(0, 10);
+	// Organism *child = new Sheep(3, Position(2, 2));
+	// *child = *parent;
+	// child->addAncestor(0, 10);
 
-	cout << "PARENT:\n";
-	cout << parent->toString() << endl;
-	parent->printAncestors();
+	// cout << "PARENT:\n";
+	// cout << parent->toString() << endl;
+	// parent->printAncestors();
 
-	cout << "CHILD:\n";
-	cout << child->toString() << endl;
-	child->printAncestors();
+	// cout << "CHILD:\n";
+	// cout << child->toString() << endl;
+	// child->printAncestors();
 
 	auto positions = world.getVectorOfFreePositionsAround(Position(5, 5));
 
