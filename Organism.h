@@ -6,14 +6,16 @@
 class Organism
 {
 private:
-	int power;
-	Position position;
 	std::string species;
 	int initiative;
 	int liveLength;
 	int powerToReproduce;
-	bool markedForRemoval = false;
 	std::vector<std::pair<int, int>> ancestors; // Ancestrors vector
+
+protected:
+	Position position;
+	int power;
+	bool markedForRemoval = false;
 
 public:
 	Organism(int power, Position position);
@@ -51,4 +53,6 @@ public:
 	virtual ~Organism(); // virtual destructor, stops memory leaks
 	virtual void move(int dx, int dy);
 	virtual Organism *Reproduce(const Position &newPos) const = 0;
+	virtual void serialize(std::ostream &out) const = 0;
+	virtual void deserialize(std::istream &in) = 0;
 };

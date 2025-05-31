@@ -19,6 +19,7 @@
         "Milkweed.cpp",
         "Wolf.cpp",
         "Toadstool.cpp",
+        "OrganismFactory.cpp",
         "-o",
         "world.out"
       ],

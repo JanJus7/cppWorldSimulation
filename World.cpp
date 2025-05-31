@@ -9,6 +9,7 @@
 #include <fstream>
 #include <algorithm> // Added that for remove_if
 #include <iostream>	 // Added for cout
+#include "OrganismFactory.h"
 
 using namespace std;
 
@@ -169,17 +170,12 @@ void World::writeWorld(const string &fileName) const // added const
 		my_file.write((char *)&orgs_size, sizeof(int));
 		for (int i = 0; i < orgs_size; i++)
 		{
-			int data;
-			data = this->organisms[i]->getPower();
-			my_file.write((char *)&data, sizeof(int));
-			data = this->organisms[i]->getPosition().getX();
-			my_file.write((char *)&data, sizeof(int));
-			data = this->organisms[i]->getPosition().getY();
-			my_file.write((char *)&data, sizeof(int));
-			string s_data = this->organisms[i]->getSpecies();
-			int s_size = s_data.size();
-			my_file.write((char *)&s_size, sizeof(int));
-			my_file.write(s_data.data(), s_data.size());
+			std::string species = organisms[i]->getSpecies();
+			int len = species.size();
+			my_file.write((char *)&len, sizeof(int));
+			my_file.write(species.data(), len);
+
+			organisms[i]->serialize(my_file);
 		}
 		my_file.close();
 	}
@@ -218,20 +214,13 @@ void World::readWorld(const string &fileName) // added const
 			my_file.read(&species[0], s_size);
 
 			Position pos{pos_x, pos_y};
-			Organism *org = nullptr;
 
-			if (species == "S")
-				org = new Sheep(pos);
-			else if (species == "G")
-				org = new Grass(pos);
-			else if (species == "W")
-				org = new Wolf(pos);
-			else if (species == "M")
-				org = new Milkweed(pos);
-			else if (species == "T")
-				org = new Toadstool(pos);
-			else
-				continue;
+			Organism *org = OrganismFactory::createOrganism(species, pos);
+			if (org)
+			{
+				org->deserialize(my_file);
+				organisms.push_back(org);
+			}
 
 			if (org)
 				organisms.push_back(org);
