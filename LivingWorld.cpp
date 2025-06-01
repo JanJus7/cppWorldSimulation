@@ -51,7 +51,7 @@ int main()
 	// cout << animal.toString() << endl;
 
 	// World test
-	World world(30, 10);
+	World world(30, 30);
 	// Position posP1{4, 5};
 	// Position posP2{5, 4};
 	// Position posW2{3, 2};
