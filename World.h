@@ -13,7 +13,6 @@ private:
 	std::vector<Organism *> organisms;
 	char separator = '.';
 
-	std::string getOrganismFromPosition(int x, int y) const; // added const
 	bool isPositionOnWorld(int x, int y) const;				 // added const
 	bool isPositionFree(const Position &position) const;	 // added const
 	std::vector<Organism *> getEdibleOrganismsAround(const Organism *predator) const;
@@ -37,6 +36,8 @@ public:
 
 	void writeWorld(const std::string &fileName) const; // added const
 	void readWorld(const std::string &fileName);		// added const
+
+	std::string getOrganismFromPosition(int x, int y) const; // added const
 
 	std::string toString() const; // added const
 };
