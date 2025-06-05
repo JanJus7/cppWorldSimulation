@@ -84,6 +84,14 @@ int main()
 	*child = *parent;
 	child->addAncestor(0, 10);
 
+	Organism *grandchild = new Sheep(Position(3, 3));
+	*grandchild = *child;
+	grandchild->addAncestor(0, 10);
+
+	Organism *grandchild2 = new Sheep(Position(4, 4));
+	*grandchild2 = *child;
+	grandchild2->addAncestor(0, 10);
+
 	cout << "PARENT:\n";
 	cout << parent->toString() << endl;
 	parent->printAncestors();
@@ -92,8 +100,17 @@ int main()
 	cout << child->toString() << endl;
 	child->printAncestors();
 
+	cout << "GRANDCHILD:\n";
+	cout << grandchild->toString() << endl;
+	grandchild->printAncestors();
+
+	cout << "GRANDCHILD2:\n";
+	cout << grandchild2->toString() << endl;
+	grandchild2->printAncestors();
+
 	auto positions = world.getVectorOfFreePositionsAround(Position(5, 5));
 
+	cout << endl;
 	for (auto pos : positions)
 		cout << pos.toString() << endl;
 
