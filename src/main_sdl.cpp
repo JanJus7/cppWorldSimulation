@@ -10,16 +10,20 @@
 #include <iostream>
 
 void populateWorld(World& world) {
-    world.addOrganism(new Grass(Position(10, 5)));
-    world.addOrganism(new Grass(Position(25, 8)));
-    world.addOrganism(new Milkweed(Position(15, 5)));
-    world.addOrganism(new Milkweed(Position(20, 10)));
-    world.addOrganism(new Toadstool(Position(15, 5)));
-    world.addOrganism(new Sheep(Position(5, 2)));
-    world.addOrganism(new Sheep(Position(12, 4)));
-    world.addOrganism(new Sheep(Position(18, 6)));
-    world.addOrganism(new Wolf(Position(7, 7)));
-    world.addOrganism(new Wolf(Position(25, 9)));
+    world.addOrganism(new Grass(Position(2, 2)));
+    world.addOrganism(new Grass(Position(17, 2)));
+
+    world.addOrganism(new Milkweed(Position(5, 15)));
+    world.addOrganism(new Milkweed(Position(15, 15)));
+
+    world.addOrganism(new Toadstool(Position(10, 10)));
+
+    world.addOrganism(new Sheep(Position(4, 5)));
+    world.addOrganism(new Sheep(Position(10, 4)));
+    world.addOrganism(new Sheep(Position(6, 16)));
+
+    world.addOrganism(new Wolf(Position(16, 4)));
+    world.addOrganism(new Wolf(Position(18, 18)));
 }
 
 int main(int argc, char* argv[]) {
