@@ -14,7 +14,7 @@ SDL_Color SdlRenderer::getColorForCode(const std::string& code) const {
     if (code == "S") return {12, 111, 253, 255};
     if (code == "W") return {0, 0, 0, 255};
     if (code == "G") return {0, 255, 0, 255};
-    if (code == "M") return {128, 0, 128, 255};
+    if (code == "D") return {128, 0, 128, 255};
     if (code == "T") return {255, 0, 0, 255};
     return {192, 192, 192, 255};
 }

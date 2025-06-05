@@ -13,6 +13,7 @@ void populateWorld(World& world) {
     world.addOrganism(new Grass(Position(10, 5)));
     world.addOrganism(new Grass(Position(25, 8)));
     world.addOrganism(new Milkweed(Position(15, 5)));
+    world.addOrganism(new Milkweed(Position(20, 10)));
     world.addOrganism(new Toadstool(Position(15, 5)));
     world.addOrganism(new Sheep(Position(5, 2)));
     world.addOrganism(new Sheep(Position(12, 4)));

@@ -51,27 +51,29 @@ int main()
 	// cout << animal.toString() << endl;
 
 	// World test
-	World world(30, 30);
+	World world(20, 20);
 	// Position posP1{4, 5};
 	// Position posP2{5, 4};
 	// Position posW2{3, 2};
 	// Position posW3{2, 3};
 
-	// world.addOrganism(new Grass(Position(2, 2)));
-	world.addOrganism(new Grass(Position(10, 5)));
-	// world.addOrganism(new Grass(Position(20, 3)));
-	world.addOrganism(new Grass(Position(25, 8)));
+	world.addOrganism(new Grass(Position(2, 2)));
+	world.addOrganism(new Grass(Position(17, 2)));
+	world.addOrganism(new Grass(Position(5, 17)));
+	world.addOrganism(new Grass(Position(17, 17)));
 
-	world.addOrganism(new Milkweed(Position(15, 5)));
+	world.addOrganism(new Milkweed(Position(10, 5)));
+	world.addOrganism(new Milkweed(Position(15, 15)));
 
-	world.addOrganism(new Toadstool(Position(15, 5)));
+	world.addOrganism(new Toadstool(Position(4, 10)));
+	world.addOrganism(new Toadstool(Position(10, 14)));
 
-	world.addOrganism(new Sheep(Position(5, 2)));
-	world.addOrganism(new Sheep(Position(12, 4)));
-	world.addOrganism(new Sheep(Position(18, 6)));
+	world.addOrganism(new Sheep(Position(3, 3)));
+	world.addOrganism(new Sheep(Position(10, 3)));
+	world.addOrganism(new Sheep(Position(6, 16)));
 
-	world.addOrganism(new Wolf(Position(7, 7)));
-	world.addOrganism(new Wolf(Position(25, 10)));
+	world.addOrganism(new Wolf(Position(15, 3)));
+	world.addOrganism(new Wolf(Position(18, 18)));
 
 	cout << endl;
 	cout << "Ancestors test:" << endl;
@@ -100,7 +102,7 @@ int main()
 	// Tura 0
 	cout << world.toString() << endl;
 
-	for (int i = 0; i < 75; i++)
+	for (int i = 0; i < 40; i++)
 	{
 		world.makeTurn();
 		cout << world.toString() << endl;
